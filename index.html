@@ -1,1 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Breeze Box — Smart Portable AC</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #10233f;
+  background: #f7fbff;
+  line-height: 1.6;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e4edf7;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0878e8;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #53657b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: #0878e8;
+}
+
+.buy-nav {
+  background: #0878e8 !important;
+  color: white !important;
+  padding: 10px 18px;
+  border-radius: 999px;
+}
+
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 24px 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.tag {
+  display: inline-block;
+  color: #0878e8;
+  background: #e8f4ff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(50px, 7vw, 86px);
+  line-height: 0.95;
+  letter-spacing: -4px;
+  margin-bottom: 20px;
+}
+
+.hero h2 {
+  font-size: 28px;
+  margin-bottom: 18px;
+  color: #0878e8;
+}
+
+.hero p {
+  color: #63748a;
+  font-size: 18px;
+  max-width: 580px;
+  margin-bottom: 28px;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 14px 23px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.btn-primary {
+  background: #0878e8;
+  color: white;
+  box-shadow: 0 10px 25px rgba(8,120,232,0.2);
+}
+
+.btn-secondary {
+  background: white;
+  color: #0878e8;
+  border: 1px solid #d9e7f5;
+}
+
+.hero-photo {
+  background: linear-gradient(145deg, #eaf5ff, #d5eaff);
+  border-radius: 35px;
+  padding: 25px;
+  box-shadow: 0 25px 70px rgba(20,70,120,0.14);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: auto;
+  max-height: 570px;
+  object-fit: cover;
+  border-radius: 25px;
+  display: block;
+}
+
+.features-strip {
+  background: #0d7bea;
+  color: white;
+}
+
+.features-grid {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 24px;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 20px;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 25px;
+  margin-bottom: 7px;
+}
+
+.feature strong {
+  display: block;
+  font-size: 14px;
+}
+
+.feature span {
+  display: block;
+  opacity: .8;
+  font-size: 12px;
+}
+
+.section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 90px 24px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-heading span {
+  color: #0878e8;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.section-heading h2 {
+  font-size: 46px;
+  letter-spacing: -2px;
+  margin: 8px 0;
+}
+
+.section-heading p {
+  color: #6d7d91;
+  max-width: 600px;
+  margin: auto;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.product-image {
+  background: white;
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(30,80,130,.1);
+}
+
+.product-image img {
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+}
+
+.product-info h2 {
+  font-size: 42px;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.product-info > p {
+  color: #68788d;
+  margin-bottom: 25px;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.spec {
+  background: #eef7ff;
+  padding: 16px;
+  border-radius: 15px;
+}
+
+.spec strong {
+  display: block;
+  color: #0878e8;
+}
+
+.price {
+  font-size: 38px;
+  font-weight: 900;
+  margin: 20px 0;
+}
+
+.demo {
+  font-size: 12px;
+  color: #77869a;
+}
+
+.how {
+  background: #eef7ff;
+}
+
+.steps {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 25px;
+}
+
+.step {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(20,70,120,.07);
+}
+
+.number {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: #0878e8;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+.step h3 {
+  margin-bottom: 8px;
+}
+
+.step p {
+  color: #6d7d91;
+  font-size: 14px;
+}
+
+.order-section {
+  background: #0d7bea;
+  color: white;
+}
+
+.order-box {
+  max-width: 750px;
+  margin: auto;
+  background: white;
+  color: #10233f;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 25px 70px rgba(0,0,0,.18);
+}
+
+.order-box h2 {
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.order-box p {
+  color: #718096;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 7px;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dce6f0;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+
+.order-total {
+  background: #eef7ff;
+  padding: 18px;
+  border-radius: 15px;
+  margin-bottom: 18px;
+}
+
+.order-total strong {
+  font-size: 24px;
+  color: #0878e8;
+}
+
+footer {
+  background: #07192d;
+  color: white;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+footer .logo {
+  margin-bottom: 8px;
+}
+
+footer p {
+  color: #91a2b7;
+  font-size: 13px;
+}
+
+@media (max-width: 800px) {
+
+  .nav-links a:not(.buy-nav) {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 55px;
+  }
+
+  .hero h1 {
+    font-size: 60px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .product {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2 {
+    font-size: 36px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Breeze Box</div>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#how">How It Works</a>
+      <a href="#product">Product</a>
+      <a class="buy-nav" href="#order">Buy Now</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+
+  <div>
+    <div class="tag">SMART PORTABLE AC</div>
+
+    <h1>Breeze<br>Box.</h1>
+
+    <h2>Small Box. Big Cool.</h2>
+
+    <p>
+      A student-built portable cooling system designed to bring
+      refreshing air wherever you need it.
+    </p>
+
+    <div class="buttons">
+      <a class="btn btn-primary" href="#order">Buy Breeze Box</a>
+      <a class="btn btn-secondary" href="#how">How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-photo">
+    <img src="breeze-box.jpg" alt="The real Breeze Box portable air conditioner">
+  </div>
+
+</section>
+
+<section class="features-strip" id="features">
+
+  <div class="features-grid">
+
+    <div class="feature">
+      <div class="feature-icon">❄️</div>
+      <strong>Powerful Cooling</strong>
+      <span>Personal airflow</span>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🌡️</div>
+      <strong>Temperature</strong>
+      <span>Temperature monitoring</span>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">📶</div>
+      <strong>Wi-Fi Control</strong>
+      <span>Smart control</span>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🎒</div>
+      <strong>Portable</strong>
+      <span>Take it anywhere</span>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🔋</div>
+      <strong>Low Voltage</strong>
+      <span>Designed for portable use</span>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" id="product">
+
+  <div class="section-heading">
+    <span>MEET THE PRODUCT</span>
+    <h2>Your personal Breeze Box.</h2>
+    <p>
+      Built as a Grade 5 technology project to explore cooling,
+      sensors, electronics and smart control.
+    </p>
+  </div>
+
+  <div class="product">
+
+    <div class="product-image">
+      <img src="breeze-box.jpg" alt="Breeze Box">
+    </div>
+
+    <div class="product-info">
+
+      <h2>Breeze Box</h2>
+
+      <p>
+        A compact cardboard prototype with a fan-based cooling
+        system, temperature sensing and smart electronics.
+      </p>
+
+      <div class="specs">
+
+        <div class="spec">
+          <strong>Portable</strong>
+          Compact design
+        </div>
+
+        <div class="spec">
+          <strong>Smart</strong>
+          Sensor technology
+        </div>
+
+        <div class="spec">
+          <strong>Connected</strong>
+          Wi-Fi control
+        </div>
+
+        <div class="spec">
+          <strong>Student Built</strong>
+          Grade 5 project
+        </div>
+
+      </div>
+
+      <div class="price">$49.99</div>
+
+      <div class="demo">
+        School-project demonstration price — no real payment is taken.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section how" id="how">
+
+  <div class="section-heading">
+    <span>HOW IT WORKS</span>
+    <h2>Simple. Smart. Portable.</h2>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="number">1</div>
+      <h3>Power On</h3>
+      <p>
+        Power the Breeze Box using its portable low-voltage power setup.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="number">2</div>
+      <h3>Measure</h3>
+      <p>
+        A temperature sensor measures the surrounding conditions.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="number">3</div>
+      <h3>Cool</h3>
+      <p>
+        The fan moves air through the cooling section and out toward you.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section order-section" id="order">
+
+  <div class="order-box">
+
+    <h2>Order Breeze Box</h2>
+
+    <p>
+      This is a school-project demonstration order form.
+      It does not collect payment.
+    </p>
+
+    <label for="name">Your name</label>
+    <input id="name" type="text" placeholder="Enter your name">
+
+    <label for="quantity">Quantity</label>
+
+    <select id="quantity" onchange="updateTotal()">
+      <option value="1">1 Breeze Box</option>
+      <option value="2">2 Breeze Boxes</option>
+      <option value="3">3 Breeze Boxes</option>
+    </select>
+
+    <div class="order-total">
+      Total demonstration price:
+      <strong id="total">$49.99</strong>
+    </div>
+
+    <button class="btn btn-primary" onclick="placeOrder()">
+      Place Demo Order
+    </button>
+
+    <p id="message" style="margin-top:18px;font-weight:700;"></p>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <div class="logo">Breeze Box</div>
+
+  <p>Cooler Air. Brighter Days.</p>
+
+  <p style="margin-top:10px;">
+    © 2026 Breeze Box — Grade 5 Technology Project
+  </p>
+
+</footer>
+
+<script>
+
+const price = 49.99;
+
+function updateTotal() {
+
+  const quantity =
+    Number(document.getElementById("quantity").value);
+
+  const total = price * quantity;
+
+  document.getElementById("total").textContent =
+    "$" + total.toFixed(2);
+}
+
+function placeOrder() {
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const quantity =
+    document.getElementById("quantity").value;
+
+  const message =
+    document.getElementById("message");
+
+  if (!name) {
+
+    message.textContent =
+      "Please enter your name first.";
+
+    return;
+  }
+
+  message.textContent =
+    "Thanks, " + name +
+    "! Your demo order for " +
+    quantity +
+    " Breeze Box" +
+    (quantity > 1 ? "es" : "") +
+    " has been recorded on this page.";
+
+}
+
+</script>
+
+</body>
+  </html>
